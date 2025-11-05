@@ -7,7 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "lint": "npm run lint:eslint && npm run lint:style",
     "lint:eslint": "eslint . --ext .js,.cjs,.mjs,.ts,.tsx,.astro",
+    "lint:style": "stylelint \"**/*.{css,scss,sass,astro,html}\"",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -21,8 +23,13 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.4.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "postcss-html": "^1.8.0",
     "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",
+    "stylelint": "^16.25.0",
+    "stylelint-config-astro": "^2.0.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-standard": "^39.0.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.3"
   }
