@@ -3,3 +3,6 @@
 
 /* stylelint-disable-next-line at-rule-no-unknown */
 @plugin "daisyui";
+
+/* stylelint-disable-next-line at-rule-no-unknown */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
