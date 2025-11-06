@@ -4,3 +4,5 @@ declare namespace App {
     t: (key: string, vars?: Record<string, string | number>) => string;
   }
 }
+
+declare module "@tabler/icons";

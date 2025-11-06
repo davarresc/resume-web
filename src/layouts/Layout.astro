@@ -14,6 +14,15 @@ const { title }: Props = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      (() => {
+        const KEY = "settings";
+        const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+        const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = saved?.theme || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
