@@ -1,7 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-
-const KEY = "settings";
 ---
 
 <div class="grid grid-cols-1">
@@ -36,7 +34,9 @@ const KEY = "settings";
 </div>
 
 <script>
-  const settings = JSON.parse(localStorage.getItem("settings") || "{}");
+  import { getSettings, setSettings } from "../utils/localStorage";
+
+  const settings = getSettings();
 
   document.getElementsByName("theme-switcher").forEach((elem) => {
     (elem as HTMLInputElement).checked =
@@ -45,9 +45,8 @@ const KEY = "settings";
     elem.addEventListener("change", (event) => {
       const theme = (event?.target as HTMLInputElement)?.value;
       document.documentElement.setAttribute("data-theme", theme);
-
-      settings.theme = theme;
-      localStorage.setItem("settings", JSON.stringify(settings));
+      settings.theme = theme as "light" | "dark";
+      setSettings(settings);
     });
   });
 </script>

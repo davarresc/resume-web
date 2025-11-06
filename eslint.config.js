@@ -16,8 +16,12 @@ export default [
         parser: tseslint.parser,
       },
     },
+    ignores: [".astro/**"],
     rules: {
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
     },
   },
 ];

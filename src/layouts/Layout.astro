@@ -15,11 +15,13 @@ const { title }: Props = Astro.props;
 <html lang="en">
   <head>
     <script>
+      import { getSettings } from "../utils/localStorage";
+
       (() => {
-        const KEY = "settings";
-        const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+        const settings = getSettings();
+
         const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
-        const theme = saved?.theme || (prefersDark ? "dark" : "light");
+        const theme = settings.theme || (prefersDark ? "dark" : "light");
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
