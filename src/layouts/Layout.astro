@@ -16,13 +16,14 @@ const { title }: Props = Astro.props;
   <head>
     <script>
       import { getSettings } from "../utils/localStorage";
+      import { setTheme } from "../utils/settings";
 
       (() => {
         const settings = getSettings();
-
         const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = settings.theme || (prefersDark ? "dark" : "light");
-        document.documentElement.setAttribute("data-theme", theme);
+
+        setTheme(theme);
       })();
     </script>
     <meta charset="UTF-8" />
@@ -37,5 +38,9 @@ const { title }: Props = Astro.props;
       <slot />
     </main>
     <Footer />
+    <script>
+      import { initializeSharedWorker } from "../utils/workers";
+      initializeSharedWorker();
+    </script>
   </body>
 </html>

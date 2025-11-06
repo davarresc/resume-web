@@ -34,19 +34,29 @@ import { Icon } from "astro-icon/components";
 </div>
 
 <script>
+  import { SETTINGS_ACTION_TYPES, type Theme } from "../types/Settings";
   import { getSettings, setSettings } from "../utils/localStorage";
+  import { postMessageToWorker } from "../utils/workers";
+  import { setTheme } from "../utils/settings";
 
   const settings = getSettings();
+  const switchers = document.querySelectorAll<HTMLInputElement>(
+    "[name='theme-switcher']",
+  );
 
-  document.getElementsByName("theme-switcher").forEach((elem) => {
-    (elem as HTMLInputElement).checked =
-      (elem as HTMLInputElement).value === settings.theme;
+  switchers.forEach((elem) => {
+    elem.checked = elem.value === settings.theme;
 
     elem.addEventListener("change", (event) => {
       const theme = (event?.target as HTMLInputElement)?.value;
-      document.documentElement.setAttribute("data-theme", theme);
-      settings.theme = theme as "light" | "dark";
+      settings.theme = theme as Theme;
+
+      setTheme(theme as Theme);
       setSettings(settings);
+      postMessageToWorker({
+        type: SETTINGS_ACTION_TYPES.SET_THEME,
+        value: theme,
+      });
     });
   });
 </script>

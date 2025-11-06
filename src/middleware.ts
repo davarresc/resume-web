@@ -7,7 +7,7 @@ export async function onRequest(
   next: (request?: Request) => Promise<Response>,
 ) {
   const url = new URL(request.url);
-  const [, lang, slug = ""] = url.pathname.split("/") || DEFAULT_LOCALE;
+  const [, lang, slug = ""] = url.pathname.split("/");
 
   if ((LANGUAGES as readonly string[]).includes(lang)) {
     setLocalsAttrs(locals, lang as Locale);

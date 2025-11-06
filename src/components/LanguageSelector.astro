@@ -4,8 +4,9 @@ import { switchLangHref, type Locale } from "../i18n/config";
 import { LANGUAGES } from "../i18n/config";
 
 const languages = LANGUAGES.filter((lang) => lang !== Astro.locals.locale);
+const pathname = Astro.url.pathname.replace(/^\/|\/$/g, "");
 const switchLang = (lang: Locale) =>
-  switchLangHref({ slug: Astro.url.pathname, lang: Astro.locals.locale }, lang);
+  switchLangHref({ slug: pathname, lang: Astro.locals.locale }, lang);
 ---
 
 <div class="dropdown dropdown-end">
@@ -19,13 +20,14 @@ const switchLang = (lang: Locale) =>
     />
   </div>
   <ul
+    id="language-menu"
     tabindex="-1"
     class="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
   >
     {
       languages.map((lang) => (
         <li>
-          <a href={switchLang(lang)}>
+          <a href={switchLang(lang)} data-lang={lang}>
             <Image
               src={`/flags/${lang}.svg`}
               alt={lang}
@@ -39,3 +41,21 @@ const switchLang = (lang: Locale) =>
     }
   </ul>
 </div>
+
+<script>
+  import { SETTINGS_ACTION_TYPES } from "../types/Settings";
+  import { postMessageToWorker } from "../utils/workers";
+
+  const links = document.querySelectorAll<HTMLLinkElement>("#language-menu a");
+
+  links.forEach((elem) => {
+    elem.addEventListener("click", (event) => {
+      const target = event.target as HTMLAnchorElement;
+
+      postMessageToWorker({
+        type: SETTINGS_ACTION_TYPES.SET_LANGUAGE,
+        value: target.dataset.lang,
+      });
+    });
+  });
+</script>

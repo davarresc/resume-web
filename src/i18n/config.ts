@@ -47,3 +47,27 @@ export function switchLangHref(
 
   return getRoutePath(routeKey, target);
 }
+
+/**
+ * Gets the language and slug from a given pathname.
+ *
+ * @param {string} pathname
+ * @returns { lang: Locale; slug: string }
+ */
+export function getPathInfo(pathname: string): { lang: Locale; slug: string } {
+  const clean = pathname.replace(/^\/|\/$/g, "");
+  const parts = clean.split("/").filter(Boolean);
+
+  if (parts.length === 0) {
+    return { lang: DEFAULT_LOCALE, slug: "" }; // Root path
+  }
+
+  if (parts.length === 1) {
+    return { lang: DEFAULT_LOCALE, slug: parts[0] }; // No language prefix
+  }
+
+  return {
+    lang: parts[0] as Locale,
+    slug: parts.slice(1).join("/"),
+  };
+}
