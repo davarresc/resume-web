@@ -3,8 +3,9 @@
 >
   <aside>
     <p class="text-center">
-      © {new Date().getFullYear()} - <strong>David Arroyo Escobar</strong>
+      © {new Date().getFullYear()} -
+      <strong>{Astro.locals.t("common.fullName")}</strong>
     </p>
-    <p>Senior Software Engineer</p>
+    <p>{Astro.locals.t("common.position")}</p>
   </aside>
 </footer>

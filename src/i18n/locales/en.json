@@ -1,0 +1,16 @@
+{
+  "common": {
+    "fullName": "David Arroyo Escobar",
+    "position": "Senior Software Engineer",
+    "nav": {
+      "home": "Home"
+    },
+    "languages": {
+      "en": "English",
+      "es": "Español"
+    }
+  },
+  "home": {
+    "title": "David Arroyo"
+  }
+}

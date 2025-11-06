@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import { switchLangHref, type Locale } from "../i18n/config";
+import { LANGUAGES } from "../i18n/config";
+
+const languages = LANGUAGES.filter((lang) => lang !== Astro.locals.locale);
+const switchLang = (lang: Locale) =>
+  switchLangHref({ slug: Astro.url.pathname, lang: Astro.locals.locale }, lang);
+---
+
+<div class="dropdown dropdown-end">
+  <div tabindex="0" role="button" class="btn btn-ghost rounded-field">
+    <Image
+      src={`/flags/${Astro.locals.locale}.svg`}
+      alt={Astro.locals.locale}
+      class="rounded-full"
+      width={24}
+      height={24}
+    />
+  </div>
+  <ul
+    tabindex="-1"
+    class="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
+  >
+    {
+      languages.map((lang) => (
+        <li>
+          <a href={switchLang(lang)}>
+            <Image
+              src={`/flags/${lang}.svg`}
+              alt={lang}
+              width={24}
+              height={24}
+            />
+            {Astro.locals.t(`common.languages.${lang}`)}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
