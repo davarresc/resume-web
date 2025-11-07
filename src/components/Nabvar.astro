@@ -3,19 +3,18 @@ import Menu from "./Menu.astro";
 import LanguageSelector from "./LanguageSelector.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import LogoIcon from "../assets/icons/logo.svg";
+import { getRoutePath } from "../i18n/config";
 ---
 
 <div class="navbar">
   <div class="navbar-start flex gap-2">
-    <LogoIcon
-      width="40px"
-      height="40px"
-      class="fill-gray-600 dark:fill-gray-100"
-    />
-
-    <strong class="text-base text-gray-900 dark:text-gray-200">
-      David Arroyo Escobar
-    </strong>
+    <a href={getRoutePath("home", Astro.locals.locale)}>
+      <LogoIcon
+        width="40px"
+        height="40px"
+        class="fill-gray-600 dark:fill-gray-100"
+      />
+    </a>
   </div>
   <nav class="navbar-center hidden lg:flex">
     <Menu />

@@ -36,7 +36,9 @@ const { title }: Props = Astro.props;
   </head>
   <body class="min-h-screen flex flex-col bg-gray-200 dark:bg-gray-900">
     <Header />
-    <main class="flex-1">
+    <main
+      class="flex flex-1 mx-auto w-full max-w-[var(--max-container-w)] my-5 h-full items-center"
+    >
       <slot />
     </main>
     <Footer />

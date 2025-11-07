@@ -2,6 +2,12 @@
   "common": {
     "fullName": "David Arroyo Escobar",
     "position": "Senior Software Engineer",
+    "phone": "+1 (224) 486 9434",
+    "email": "arroyoescobardavid@gmail.com",
+    "socialNetworks": {
+      "github": "https://github.com/davarresc",
+      "linkedin": "https://linkedin.com/in/david-arroyo-escobar"
+    },
     "nav": {
       "home": "Home",
       "projects": "Projects",

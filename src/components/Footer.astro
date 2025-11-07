@@ -10,11 +10,17 @@ import LinkedIn from "../assets/icons/linkedin.svg";
 
   <aside class="flex flex-col gap-5">
     <div class="flex gap-8">
-      <a href="" class="flex items-center gap-2">
+      <a
+        href={Astro.locals.t("common.socialNetworks.github")}
+        class="flex items-center gap-2"
+      >
         <GithubIcon class="text-black dark:fill-gray-100 w-[24px] h-[24px]" />
         <span class="text-base text-gray-900 dark:text-gray-100">Github</span>
       </a>
-      <a href="" class="flex items-center gap-2">
+      <a
+        href={Astro.locals.t("common.socialNetworks.linkedin")}
+        class="flex items-center gap-2"
+      >
         <LinkedIn class="fill-[#0077B7] dark:fill-gray-100 w-[24px] h-[24px]" />
         <span class="text-base text-gray-900 dark:text-gray-100">Linkedin</span>
       </a>

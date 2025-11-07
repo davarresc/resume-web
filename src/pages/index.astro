@@ -1,7 +1,113 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout title="David Arroyo">
-  {Astro.locals.t("common.nav.home")}
+  <div class="max-w-[840px] mx-auto animate-fade-in-up flex flex-col gap-12">
+    <div class="flex flex-col lg:flex-row gap-12 items-center">
+      <!-- Image -->
+      <img src="/me.png" class="rounded-full w-84 max-w-[80%]" />
+
+      <!-- Info -->
+      <div class="flex flex-col gap-8 max-w-[80%] mx-auto">
+        <div class="flex flex-col gap-1 items-start">
+          <div class="flex-inline typewriter">
+            <h1
+              class="text-2xl font-bold text-gray-900 dark:text-gray-100 lg:tracking-widest font-mono overflow-hidden whitespace-nowrap"
+            >
+              {Astro.locals.t("common.fullName")}
+            </h1>
+          </div>
+          <p class="text-xl text-gray-900 dark:text-gray-100">
+            {Astro.locals.t("common.position")}
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <p class="text-lg text-gray-900 dark:text-gray-100">
+            I'm David Arroyo, a Full-stack Software Engineer with more than 10
+            years of experience. Expert in frontend-frameworks with
+            Javascript/Typescript, Node.js and implementing Roku streaming apps
+            using BrightScript.
+          </p>
+          <p class="text-lg text-gray-900 dark:text-gray-100">
+            A good story conveys emotion and information like nothing else. I
+            can help you write one.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Contact information -->
+    <div
+      class="flex flex-col lg:flex-row mx-auto lg:mx-auto gap-2 lg:gap-8 w-[80%] justify-center"
+    >
+      <p class="group flex gap-2 items-center">
+        <Icon name="tabler:phone" class="w-[30px] h-[30px]" />
+        <a href={"tel:" + Astro.locals.t("common.phone")}>
+          {Astro.locals.t("common.phone")}
+        </a>
+        <Icon
+          name="tabler:clipboard-text"
+          class="clipboard w-[20px] h-[20px] cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          data-text={Astro.locals.t("common.phone")}
+        />
+      </p>
+      <p class="group flex gap-2 items-center">
+        <Icon name="tabler:at" class="w-[30px] h-[30px]" />
+        <a href={"mailto:" + Astro.locals.t("common.email")}>
+          {Astro.locals.t("common.email")}
+        </a>
+        <Icon
+          name="tabler:clipboard-text"
+          class="clipboard w-[20px] h-[20px] cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200"
+          data-text={Astro.locals.t("common.email")}
+        />
+        <Icon
+          name="tabler:clipboard-check"
+          class="hidden clipboard-check w-[20px] h-[20px]"
+        />
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const clipboardIcons = document.querySelectorAll(".clipboard");
+    clipboardIcons.forEach((clipboardIcon) => {
+      clipboardIcon.addEventListener("click", (event) => {
+        const target = event?.target as HTMLElement;
+        const text = target.dataset.text as string;
+        navigator.clipboard.writeText(text);
+        // TODO change icon
+      });
+    });
+  </script>
+  <style>
+    .typewriter h1 {
+      border-right: 0.15em solid transparent;
+      animation:
+        typing 3.5s steps(30, end),
+        blink-caret 0.5s step-end 7 alternate;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink-caret {
+      0%,
+      100% {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: var(--carret-color);
+      }
+    }
+  </style>
 </Layout>

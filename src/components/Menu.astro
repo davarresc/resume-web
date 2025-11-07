@@ -2,11 +2,20 @@
 import { ROUTES, type RouteKey } from "../constants/routes";
 import { getRoutePath } from "../i18n/config";
 import LogoIcon from "../assets/icons/logo.svg";
+import { Icon } from "astro-icon/components";
 
-type Link = { href: RouteKey; label: string };
+const iconsMap: Record<string, string> = {
+  home: "home-filled",
+  projects: "package",
+  repositories: "brand-bitbucket",
+  contact: "address-book",
+  default: "link",
+};
+type Link = { href: RouteKey; label: string; icon: string };
 const links: Link[] = Object.keys(ROUTES).map((key) => ({
   href: key as RouteKey,
   label: Astro.locals.t(`common.nav.${key}`),
+  icon: iconsMap[key] || iconsMap.default,
 }));
 
 const { isMobile = false } = Astro.props;
@@ -62,15 +71,16 @@ const { isMobile = false } = Astro.props;
           class="drawer-overlay"
         />
 
-        <div class="menu bg-base-200 min-h-full w-80 p-4">
+        <div class="flex flex-col bg-base-200 min-h-full w-80 p-4">
           <ul class="flex-1">
-            {links.map(({ href, label }, idx) => (
+            {links.map(({ href, label, icon }) => (
               <>
                 <li>
                   <a
                     href={getRoutePath(href, Astro.locals.locale)}
-                    class={`text-base text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white cursor-pointer p-2`}
+                    class={`text-base text-gray-500 active:text-gray-900 dark:text-gray-300 dark:active:text-white cursor-pointer p-2 gap-2 flex items-center`}
                   >
+                    <Icon name={"tabler:" + icon} />
                     {label}
                   </a>
                 </li>
