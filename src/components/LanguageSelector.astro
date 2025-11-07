@@ -5,12 +5,11 @@ import { LANGUAGES } from "../i18n/config";
 
 const languages = LANGUAGES.filter((lang) => lang !== Astro.locals.locale);
 const pathname = Astro.url.pathname.replace(/^\/|\/$/g, "");
-const switchLang = (lang: Locale) =>
-  switchLangHref({ slug: pathname, lang: Astro.locals.locale }, lang);
+const switchLang = (lang: Locale) => switchLangHref({ slug: pathname }, lang);
 ---
 
 <div class="dropdown dropdown-end">
-  <div tabindex="0" role="button" class="btn btn-ghost rounded-field">
+  <div tabindex="0" role="button" class="px-4 cursor-pointer">
     <Image
       src={`/flags/${Astro.locals.locale}.svg`}
       alt={Astro.locals.locale}
@@ -22,12 +21,16 @@ const switchLang = (lang: Locale) =>
   <ul
     id="language-menu"
     tabindex="-1"
-    class="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
+    class="dropdown-content bg-gray-100 dark:bg-gray-800 rounded-box z-1 mt-3 w-52 p-1"
   >
     {
       languages.map((lang) => (
-        <li>
-          <a href={switchLang(lang)} data-lang={lang}>
+        <li class="m-1">
+          <a
+            href={switchLang(lang)}
+            data-lang={lang}
+            class="flex gap-3 hover:bg-gray-200 p-2 dark:hover:bg-gray-700 rounded-box"
+          >
             <Image
               src={`/flags/${lang}.svg`}
               alt={lang}

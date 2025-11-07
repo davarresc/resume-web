@@ -1,11 +1,37 @@
+---
+import GithubIcon from "../assets/icons/github.svg";
+import LinkedIn from "../assets/icons/linkedin.svg";
+---
+
 <footer
-  class="footer sm:footer-horizontal footer-center border-base-300 dark:border-white border-t m-4px-10 py-4"
+  class="footer footer-center my-5 max-w-[var(--max-container-w)] mx-auto flex flex-col"
 >
-  <aside>
-    <p class="text-center">
-      © {new Date().getFullYear()} -
-      <strong>{Astro.locals.t("common.fullName")}</strong>
-    </p>
-    <p>{Astro.locals.t("common.position")}</p>
+  <div class="w-[90%] border-b border-gray-400"></div>
+
+  <aside class="flex flex-col gap-5">
+    <div class="flex gap-8">
+      <a href="" class="flex items-center gap-2">
+        <GithubIcon class="text-black dark:fill-gray-100 w-[24px] h-[24px]" />
+        <span class="text-base text-gray-900 dark:text-gray-100">Github</span>
+      </a>
+      <a href="" class="flex items-center gap-2">
+        <LinkedIn class="fill-[#0077B7] dark:fill-gray-100 w-[24px] h-[24px]" />
+        <span class="text-base text-gray-900 dark:text-gray-100">Linkedin</span>
+      </a>
+    </div>
+    <div class="flex flex-col gap-1">
+      <p class="text-center">
+        <span class="text-base text-gray-900 dark:text-gray-200">
+          © {new Date().getFullYear()}
+        </span>
+        -
+        <strong class="text-base text-gray-900 dark:text-gray-200">
+          {Astro.locals.t("common.fullName")}
+        </strong>
+      </p>
+      <p class="text-base text-gray-900 dark:text-gray-200">
+        {Astro.locals.t("common.position")}
+      </p>
+    </div>
   </aside>
 </footer>

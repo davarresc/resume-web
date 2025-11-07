@@ -1,6 +1,7 @@
 import type { APIContext } from "astro";
-import { DEFAULT_LOCALE, LANGUAGES, ROUTES, type Locale } from "./i18n/config";
+import { DEFAULT_LOCALE, LANGUAGES, type Locale } from "./i18n/config";
 import { loadDictionary, t } from "./i18n/loader";
+import { ROUTES } from "./constants/routes";
 
 export async function onRequest(
   { request, locals }: APIContext,
@@ -10,7 +11,7 @@ export async function onRequest(
   const [, lang, slug = ""] = url.pathname.split("/");
 
   if ((LANGUAGES as readonly string[]).includes(lang)) {
-    setLocalsAttrs(locals, lang as Locale);
+    await setLocalsAttrs(locals, lang as Locale);
 
     if (lang !== DEFAULT_LOCALE) {
       const routeKey = Object.keys(ROUTES).find(
@@ -27,7 +28,7 @@ export async function onRequest(
       }
     }
   } else {
-    setLocalsAttrs(locals, DEFAULT_LOCALE);
+    await setLocalsAttrs(locals, DEFAULT_LOCALE);
   }
 
   next();

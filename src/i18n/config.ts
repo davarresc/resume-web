@@ -1,15 +1,11 @@
+import { ROUTES, type RouteKey } from "../constants/routes";
+
 // Languages available in the application
 export const LANGUAGES = ["en", "es"] as const;
 export type Locale = (typeof LANGUAGES)[number];
 export const DEFAULT_LOCALE: Locale = "en";
 export const PREFIXED = LANGUAGES.filter((l) => l !== DEFAULT_LOCALE);
 
-// Route slugs for each locale
-export const ROUTES = {
-  home: { en: "", es: "" },
-  about: { en: "about", es: "sobre-mi" },
-} as const;
-export type RouteKey = keyof typeof ROUTES;
 const ROUTE_ENTRIES = Object.entries(ROUTES) as [
   RouteKey,
   Record<Locale, string>,
@@ -36,11 +32,11 @@ export function getRoutePath(route: RouteKey, locale: Locale): string {
  * @returns {string}
  */
 export function switchLangHref(
-  current: { lang: Locale; slug?: string },
+  current: { lang?: Locale; slug?: string },
   target: Locale,
 ): string {
   const found = ROUTE_ENTRIES.find(([, slugs]) => {
-    return slugs[current.lang] === (current.slug ?? "");
+    return slugs[current.lang || DEFAULT_LOCALE] === (current.slug ?? "");
   });
 
   const routeKey: RouteKey = found?.[0] ?? "home";

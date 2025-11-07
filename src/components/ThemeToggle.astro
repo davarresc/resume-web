@@ -1,10 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
+
+const uuid = String(Math.random());
 ---
 
-<div class="grid grid-cols-1">
+<div class="flex">
   <div
-    class="relative z-0 inline-grid grid-cols-2 gap-0.5 rounded-full bg-gray-950/5 p-0.75 text-gray-950 dark:bg-white/10 dark:text-white"
+    class="relative z-0 flex gap-0.5 rounded-full bg-gray-950/5 p-0.75 text-gray-950 dark:bg-white/10 dark:text-white"
   >
     <div
       class="relative rounded-full p-1.5 *:size-7 has-checked:bg-white has-checked:ring has-checked:inset-ring has-checked:ring-gray-950/10 has-checked:inset-ring-white/10 sm:p-0 dark:has-checked:bg-gray-600 dark:has-checked:text-white dark:has-checked:ring-transparent cursor-pointer"
@@ -12,7 +14,7 @@ import { Icon } from "astro-icon/components";
       <input
         type="radio"
         class="absolute inset-0 appearance-none cursor-pointer"
-        name="theme-switcher"
+        name={"theme-switcher-" + uuid}
         aria-label="Light theme"
         value="light"
       />
@@ -24,7 +26,7 @@ import { Icon } from "astro-icon/components";
       <input
         type="radio"
         class="absolute inset-0 appearance-none cursor-pointer"
-        name="theme-switcher"
+        name={"theme-switcher-" + uuid}
         aria-label="Dark theme"
         value="dark"
       />
@@ -39,23 +41,31 @@ import { Icon } from "astro-icon/components";
   import { postMessageToWorker } from "../utils/workers";
   import { setTheme } from "../utils/settings";
 
-  const settings = getSettings();
-  const switchers = document.querySelectorAll<HTMLInputElement>(
-    "[name='theme-switcher']",
-  );
+  document.addEventListener("DOMContentLoaded", () => {
+    const settings = getSettings();
+    const switchers = document.querySelectorAll<HTMLInputElement>(
+      "[name^='theme-switcher-']",
+    );
 
-  switchers.forEach((elem) => {
-    elem.checked = elem.value === settings.theme;
+    switchers.forEach((elem) => {
+      elem.checked = elem.value === settings.theme;
 
-    elem.addEventListener("change", (event) => {
-      const theme = (event?.target as HTMLInputElement)?.value;
-      settings.theme = theme as Theme;
+      elem.addEventListener("change", (event) => {
+        const theme = (event?.target as HTMLInputElement)?.value;
+        settings.theme = theme as Theme;
 
-      setTheme(theme as Theme);
-      setSettings(settings);
-      postMessageToWorker({
-        type: SETTINGS_ACTION_TYPES.SET_THEME,
-        value: theme,
+        switchers.forEach((radio) => {
+          if (radio !== elem) {
+            radio.checked = radio.value === settings.theme;
+          }
+        });
+
+        setTheme(theme as Theme);
+        setSettings(settings);
+        postMessageToWorker({
+          type: SETTINGS_ACTION_TYPES.SET_THEME,
+          value: theme,
+        });
       });
     });
   });

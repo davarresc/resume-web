@@ -3,7 +3,10 @@
     "fullName": "David Arroyo Escobar",
     "position": "Senior Software Engineer",
     "nav": {
-      "home": "Home"
+      "home": "Home",
+      "projects": "Projects",
+      "repositories": "Repositories",
+      "contact": "Contact"
     },
     "languages": {
       "en": "English",

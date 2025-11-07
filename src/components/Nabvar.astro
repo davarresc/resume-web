@@ -2,15 +2,35 @@
 import Menu from "./Menu.astro";
 import LanguageSelector from "./LanguageSelector.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import LogoIcon from "../assets/icons/logo.svg";
 ---
 
-<div class="navbar bg-base-100 shadow-sm">
-  <nav class="navbar-start">
+<div class="navbar">
+  <div class="navbar-start flex gap-2">
+    <LogoIcon
+      width="40px"
+      height="40px"
+      class="fill-gray-600 dark:fill-gray-100"
+    />
+
+    <strong class="text-base text-gray-900 dark:text-gray-200">
+      David Arroyo Escobar
+    </strong>
+  </div>
+  <nav class="navbar-center hidden lg:flex">
     <Menu />
   </nav>
   <div class="navbar-end">
-    <ThemeToggle />
-
-    <LanguageSelector />
+    <div class="lg:hidden order-2">
+      <Menu isMobile="true">
+        <div class="mb-5">
+          <ThemeToggle />
+        </div>
+      </Menu>
+    </div>
+    <div class="hidden lg:inline-flex items-center">
+      <ThemeToggle />
+    </div>
+    <LanguageSelector class="order-1" />
   </div>
 </div>

@@ -4,7 +4,9 @@
     "position": "Ingeniero de Software Senior",
     "nav": {
       "home": "Inicio",
-      "about": "Sobre"
+      "projects": "Proyectos",
+      "repositories": "Repositorios",
+      "contact": "Contacto"
     },
     "languages": {
       "en": "English",
