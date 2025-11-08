@@ -7,7 +7,7 @@ import { Icon } from "astro-icon/components";
 const iconsMap: Record<string, string> = {
   home: "home-filled",
   projects: "package",
-  repositories: "brand-bitbucket",
+  resume: "brand-bitbucket",
   contact: "address-book",
   default: "link",
 };
@@ -16,7 +16,7 @@ const links: Link[] = Object.keys(ROUTES).map((key) => ({
   href: key as RouteKey,
   label: Astro.locals.t(`common.nav.${key}`),
   icon: iconsMap[key] || iconsMap.default,
-  disabled: ["projects", "repositories"].includes(key),
+  disabled: ["projects", "resume"].includes(key),
 }));
 
 const { slug } = getPathInfo(Astro.url.pathname);

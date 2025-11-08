@@ -1,8 +1,8 @@
 // Route slugs for each locale
 export const ROUTES = {
   home: { en: "", es: "" },
+  resume: { en: "Resume", es: "Curriculum" },
   projects: { en: "projects", es: "proyectos" },
-  repositories: { en: "repositories", es: "repositorios" },
   contact: { en: "contact", es: "contacto" },
 } as const;
 

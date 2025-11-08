@@ -9,10 +9,11 @@
       "linkedin": "https://linkedin.com/in/david-arroyo-escobar"
     },
     "soon": "Soon",
+    "or": "or",
     "nav": {
       "home": "Home",
       "projects": "Projects",
-      "repositories": "Repositories",
+      "resume": "Resume",
       "contact": "Contact"
     },
     "languages": {
@@ -23,5 +24,31 @@
   "home": {
     "title": "David Arroyo",
     "description": " I'm David Arroyo, a Full-stack Software Engineer with more than 10  years of experience. Expert in frontend-frameworks with Javascript/Typescript, Node.js and implementing Roku streaming apps using BrightScript."
+  },
+  "contact": {
+    "title": "Contact | David Arroyo",
+    "phone": "Phone",
+    "email": "Email",
+    "messages": {
+      "success": {
+        "title": "Thank you for your message",
+        "description": "I'll reply you as soon as possible"
+      },
+      "error": {
+        "title": "Something went wrong!",
+        "description": "Please review the form and try again. If the issue continues, please try again later."
+      }
+    },
+    "form": {
+      "fields": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "message": "Message"
+      },
+      "buttons": {
+        "submit": "Submit"
+      }
+    }
   }
 }

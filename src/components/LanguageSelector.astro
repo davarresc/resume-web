@@ -29,7 +29,7 @@ const switchLang = (lang: Locale) => switchLangHref({ slug: pathname }, lang);
           <a
             href={switchLang(lang)}
             data-lang={lang}
-            class="flex gap-3 hover:bg-gray-200 p-2 dark:hover:bg-gray-700 rounded-box"
+            class="flex gap-3 hover:bg-gray-200 p-2 dark:hover:bg-gray-700 active:bg-gray-200 p-2 dark:active:bg-gray-700 rounded-box"
           >
             <Image
               src={`/flags/${lang}.svg`}
