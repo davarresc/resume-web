@@ -2,6 +2,7 @@
   "name": "resume-web",
   "type": "module",
   "version": "0.0.1",
+  "description": "A personal website build with Astro + TailwindCSS",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

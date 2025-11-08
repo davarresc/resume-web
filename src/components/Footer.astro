@@ -1,6 +1,7 @@
 ---
 import GithubIcon from "../assets/icons/github.svg";
 import LinkedIn from "../assets/icons/linkedin.svg";
+import { Config } from "../utils/config";
 ---
 
 <footer
@@ -38,6 +39,10 @@ import LinkedIn from "../assets/icons/linkedin.svg";
       <p class="text-base text-gray-900 dark:text-gray-200">
         {Astro.locals.t("common.position")}
       </p>
+      <small>
+        {Astro.locals.t("common.version")}
+        {Config.version}
+      </small>
     </div>
   </aside>
 </footer>

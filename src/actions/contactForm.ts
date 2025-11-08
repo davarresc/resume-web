@@ -1,6 +1,7 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import nodemailer from "nodemailer";
+import { Config } from "../utils/config";
 
 const contactSchema = z.object({
   firstName: z.string().min(2),
@@ -24,12 +25,12 @@ export default defineAction({
 // TODO Update to the resume notifiication mimcroservice when available
 const sendMail = async (input: ContactSchema) => {
   const transporter = nodemailer.createTransport({
-    host: import.meta.env.SMTP_HOST,
-    port: import.meta.env.SMTP_PORT,
+    host: Config.SMTP.host,
+    port: Config.SMTP.host,
     secure: true,
     auth: {
-      user: import.meta.env.SMTP_USER,
-      pass: import.meta.env.SMTP_PASS,
+      user: Config.SMTP.user,
+      pass: Config.SMTP.pass,
     },
   });
 
