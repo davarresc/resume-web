@@ -4,6 +4,11 @@
     "position": "Ingeniero de Software Senior",
     "phone": "+34 617 85 82 08",
     "email": "arroyoescobardavid@gmail.com",
+    "socialNetworks": {
+      "github": "https://github.com/davarresc",
+      "linkedin": "https://linkedin.com/in/david-arroyo-escobar"
+    },
+    "soon": "Próximamente",
     "nav": {
       "home": "Inicio",
       "projects": "Proyectos",
@@ -16,6 +21,7 @@
     }
   },
   "home": {
-    "title": "David Arroyo"
+    "title": "David Arroyo",
+    "description": "Soy David Arroyo, ingeniero de software full-stack con más de 10 años de experiencia. Experto en frameworks frontend con Javascript/Typescript, Node.js e implementación de aplicaciones de streaming para Roku usando BrightScript."
   }
 }
