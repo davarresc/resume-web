@@ -1,6 +1,6 @@
 ---
 import { ROUTES, type RouteKey } from "../constants/routes";
-import { getRoutePath } from "../i18n/config";
+import { getPathInfo, getRoutePath } from "../i18n/config";
 import LogoIcon from "../assets/icons/logo.svg";
 import { Icon } from "astro-icon/components";
 
@@ -11,28 +11,42 @@ const iconsMap: Record<string, string> = {
   contact: "address-book",
   default: "link",
 };
-type Link = { href: RouteKey; label: string; icon: string };
+type Link = { href: RouteKey; label: string; icon: string; disabled: boolean };
 const links: Link[] = Object.keys(ROUTES).map((key) => ({
   href: key as RouteKey,
   label: Astro.locals.t(`common.nav.${key}`),
   icon: iconsMap[key] || iconsMap.default,
+  disabled: ["projects", "repositories"].includes(key),
 }));
 
+const { slug } = getPathInfo(Astro.url.pathname);
 const { isMobile = false } = Astro.props;
 ---
 
 {
   !isMobile && (
     <ul class="hidden lg:flex">
-      {links.map(({ href, label }, idx) => (
+      {links.map(({ href, label, disabled }, idx) => (
         <>
           <li>
-            <a
-              href={getRoutePath(href, Astro.locals.locale)}
-              class={`text-base text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white cursor-pointer p-2`}
-            >
-              {label}
-            </a>
+            {disabled ? (
+              <span class="text-base text-gray-400 relative p-2 dark:text-gray-300 dark:hover:text-white">
+                {label}
+                <small class="absolute top-[24px] inset-0 m-auto text-center">
+                  ({Astro.locals.t("common.soon")})
+                </small>
+              </span>
+            ) : (
+              <a
+                href={getRoutePath(href, Astro.locals.locale)}
+                class={
+                  (slug === href ? "underline " : "") +
+                  `text-base text-gray-700 hover:underline underline-offset-5 dark:text-gray-300 dark:hover:text-white cursor-pointer p-2`
+                }
+              >
+                {label}
+              </a>
+            )}
           </li>
           {idx < links.length - 1 && (
             <span class="px-1 text-black dark:text-white">|</span>
@@ -73,16 +87,27 @@ const { isMobile = false } = Astro.props;
 
         <div class="flex flex-col bg-base-200 min-h-full w-80 p-4">
           <ul class="flex-1">
-            {links.map(({ href, label, icon }) => (
+            {links.map(({ href, label, icon, disabled }) => (
               <>
                 <li>
-                  <a
-                    href={getRoutePath(href, Astro.locals.locale)}
-                    class={`text-base text-gray-500 active:text-gray-900 dark:text-gray-300 dark:active:text-white cursor-pointer p-2 gap-2 flex items-center`}
-                  >
-                    <Icon name={"tabler:" + icon} />
-                    {label}
-                  </a>
+                  {disabled ? (
+                    <span class="flex items-center text-base text-gray-400 relative p-2 dark:text-gray-300 dark:hover:text-white gap-2">
+                      <Icon name={"tabler:" + icon} />
+                      {label}
+                      <small>({Astro.locals.t("common.soon")})</small>
+                    </span>
+                  ) : (
+                    <a
+                      href={getRoutePath(href, Astro.locals.locale)}
+                      class={
+                        (slug === href ? "underline " : "") +
+                        `text-base text-gray-600 hover:underline underline-offset-5 dark:text-gray-300 dark:active:text-white cursor-pointer p-2 gap-2 flex items-center`
+                      }
+                    >
+                      <Icon name={"tabler:" + icon} />
+                      {label}
+                    </a>
+                  )}
                 </li>
               </>
             ))}

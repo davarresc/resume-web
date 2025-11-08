@@ -55,7 +55,7 @@ export function getPathInfo(pathname: string): { lang: Locale; slug: string } {
   const parts = clean.split("/").filter(Boolean);
 
   if (parts.length === 0) {
-    return { lang: DEFAULT_LOCALE, slug: "" }; // Root path
+    return { lang: DEFAULT_LOCALE, slug: "home" }; // Root path
   }
 
   if (parts.length === 1) {
