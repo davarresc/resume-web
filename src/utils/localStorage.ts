@@ -6,7 +6,10 @@ export const getSettings = (): Settings => {
   let settings: Settings = DEFAULT_SETTINGS;
 
   try {
-    settings = JSON.parse(localStorage.getItem(STORAGE_SETTING_KEY) || "{}");
+    const settingItems = localStorage.getItem(STORAGE_SETTING_KEY);
+    if (settingItems) {
+      settings = JSON.parse(settingItems);
+    }
   } catch {
     // ignore
   }
