@@ -1,0 +1,47 @@
+---
+export type TimelineEntry = {
+  title: string;
+  subtitle: string;
+  startDate: string;
+  endDate?: string;
+  timeText: string;
+  description?: string;
+};
+
+type Props = TimelineEntry;
+
+const { title, subtitle, startDate, endDate, timeText, description }: Props =
+  Astro.props;
+---
+
+<div class="relative pl-8 sm:pl-32 py-6 group flex flex-col lg:block">
+  <div class="text-xl text-gray-900 dark:text-gray-100 font-bold order-1">
+    {title}
+  </div>
+  <div
+    class="lg:absolute lg:-translate-x-full lg:left-20 flex flex-col lg:items-end order-3 my-4 lg:my-0"
+  >
+    <p class="text-base font-bold text-gray-900 dark:text-gray-100">
+      {timeText}
+    </p>
+    <time class="text-base text-slate-600 dark:text-gray-300">
+      {startDate}
+      {endDate ? " - " + endDate : ""}
+    </time>
+  </div>
+  <div
+    class="flex flex-col sm:flex-row items-start order-2 mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5"
+  >
+    <div class="text-xl text-slate-900 dark:text-gray-300">
+      {subtitle}
+    </div>
+  </div>
+  {
+    description && (
+      <div
+        class="text-slate-600 dark:text-gray-400 order-4"
+        set:html={description}
+      />
+    )
+  }
+</div>

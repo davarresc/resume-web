@@ -1,0 +1,116 @@
+---
+import TimeLine from "../components/timeline/TimeLine.astro";
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { experience, education, certifications } from "../constants/resume";
+
+const tExperience = experience[Astro.locals.locale];
+const tEducation = education[Astro.locals.locale];
+const tCertifications = certifications[Astro.locals.locale];
+
+const downloadSuffix = Astro.locals.locale === "es" ? "cv" : "resume";
+const downloadFile = `/docs/arroyo-escobar-david-${downloadSuffix}.pdf`;
+---
+
+<Layout title={Astro.locals.t("resume.title")}>
+  <div
+    class="max-w-[840px] w-full mx-auto animate-fade-in-up relative px-4 lg:px-0"
+  >
+    <h1
+      class="text-2xl font-bold text-gray-900 dark:text-gray-100 underline dark:underline-gray-100 underline-offset-8"
+    >
+      {Astro.locals.t("common.nav.resume")}
+    </h1>
+
+    <div class="absolute right-4 -top-0 lg:top-0 flex justify-center">
+      <a
+        download
+        href={downloadFile}
+        class="flex gap-2 cursor-pointer text-gray-900 border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+      >
+        <Icon name="tabler:download" class="w-[24px] h-[24px]" />
+        <span class="text-base hidden lg:block"
+          >{Astro.locals.t("resume.download")}</span
+        >
+      </a>
+    </div>
+
+    <!-- Experience -->
+    <div class="mt-10 lg:mt-20">
+      <h2
+        class="inline-flex gap-2 text-xl text-gray-900 dark:text-gray-100 items-center w-full justify-center font-bold"
+      >
+        <Icon name="tabler:briefcase-filled" class="w-[24px] h-[24px]" />
+        {Astro.locals.t("resume.experience")}
+      </h2>
+
+      <TimeLine
+        entries={tExperience.map((entry) => ({
+          title: entry.company,
+          subtitle: entry.position,
+          startDate: entry.startDate,
+          endDate: entry.endDate,
+          description: entry.description,
+          timeText: entry.location,
+        }))}
+      />
+    </div>
+
+    <!-- Education -->
+    <div class="mt-20">
+      <h2
+        class="inline-flex gap-2 text-xl text-gray-900 dark:text-gray-100 items-center w-full justify-center font-bold"
+      >
+        <Icon name="tabler:school" class="w-[24px] h-[24px]" />
+        {Astro.locals.t("resume.education")}
+      </h2>
+      <TimeLine
+        entries={tEducation.map((entry) => ({
+          title: entry.title,
+          subtitle: entry.place,
+          startDate: entry.startDate,
+          endDate: entry.endDate,
+          timeText: entry.location,
+        }))}
+      />
+    </div>
+
+    <!-- Certification -->
+    <div class="mt-20">
+      <h2
+        class="inline-flex gap-2 text-xl text-gray-900 dark:text-gray-100 items-center w-full justify-center font-bold"
+      >
+        <Icon name="tabler:file-certificate" class="w-[24px] h-[24px]" />
+        {Astro.locals.t("resume.certifications")}
+      </h2>
+      <div class="flex flex-col lg:block lg:columns-2 mt-5">
+        {
+          tCertifications.map(({ title, issued, id, expired }) => (
+            <div class="my-4">
+              <p class="text-xl text-gray-800 dark:text-gray-100 font-bold order-1">
+                {title}
+              </p>
+              <p class="text-base font-bold text-gray-700 dark:text-gray-100">
+                Credential ID: {id}
+              </p>
+              {(issued || expired) && (
+                <div class="flex gap-8">
+                  {issued && (
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                      Issued: {issued}{" "}
+                    </p>
+                  )}
+                  {expired && (
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                      Expired: {expired}{" "}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

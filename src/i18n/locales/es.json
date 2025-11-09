@@ -51,5 +51,12 @@
         "submit": "Enviar"
       }
     }
+  },
+  "resume": {
+    "title": "Curriculum | David Arroyo",
+    "download": "Descargar",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "certifications": "Certificaciones"
   }
 }

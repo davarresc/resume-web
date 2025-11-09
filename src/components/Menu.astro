@@ -16,7 +16,7 @@ const links: Link[] = Object.keys(ROUTES).map((key) => ({
   href: key as RouteKey,
   label: Astro.locals.t(`common.nav.${key}`),
   icon: iconsMap[key] || iconsMap.default,
-  disabled: ["projects", "resume"].includes(key),
+  disabled: ["projects"].includes(key),
 }));
 
 const { slug } = getPathInfo(Astro.url.pathname);
@@ -60,32 +60,24 @@ const { isMobile = false } = Astro.props;
 {
   isMobile && (
     <div>
-      <input id="my-drawer-1" type="checkbox" class="drawer-toggle" />
+      <input id="drawer-menu" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <label for="my-drawer-1" class="p-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="inline-block h-5 w-5 stroke-current"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+        <label for="drawer-menu" class="flex p-5">
+          <Icon name="tabler:menu-2" class="w-[24px] h-[24px]" />
         </label>
       </div>
       <div class="drawer-side">
         <label
-          for="my-drawer-1"
+          for="drawer-menu"
           aria-label="close sidebar"
           class="drawer-overlay"
         />
 
         <div class="flex flex-col bg-base-200 min-h-full w-80 p-4">
+          <label for="drawer-menu" class="absolute right-4 top-4">
+            <Icon name="tabler:x" class="w-[24px] h-[24px]" />
+          </label>
+
           <ul class="flex-1">
             {links.map(({ href, label, icon, disabled }) => (
               <>
@@ -113,7 +105,7 @@ const { isMobile = false } = Astro.props;
             ))}
           </ul>
           <slot />
-          <div class="flex gap-4">
+          <div class="flex gap-4 mb-4">
             <LogoIcon
               width="40px"
               height="40px"

@@ -1,0 +1,20 @@
+---
+import type { TimelineEntry } from "./TimeLineEntry.astro";
+import TimeLineEntry from "./TimeLineEntry.astro";
+
+export interface Props {
+  entries: TimelineEntry[];
+}
+
+const { entries } = Astro.props as Props;
+---
+
+<div>
+  {
+    entries.map((entry) => (
+      <>
+        <TimeLineEntry {...entry} />
+      </>
+    ))
+  }
+</div>
