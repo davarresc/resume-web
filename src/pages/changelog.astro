@@ -1,0 +1,79 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import Layout from "../layouts/Layout.astro";
+import MarkdownIt from "markdown-it";
+import { getRoutePath } from "../i18n/config";
+
+let html: string | null = null;
+try {
+  const md = new MarkdownIt();
+  const changelogPath = path.resolve("./CHANGELOG.md");
+  const changelogRaw = fs.readFileSync(changelogPath, "utf-8");
+  html = md.render(changelogRaw);
+} catch (error) {
+  console.log(error);
+}
+---
+
+<style is:inline>
+  .markdown h1,
+  .markdown h2,
+  .markdown h3 {
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  .markdown h1 {
+    font-size: 36px;
+  }
+
+  .markdown h2 {
+    font-size: 30px;
+  }
+
+  .markdown h3 {
+    font-size: 24px;
+  }
+
+  .markdown a {
+    color: #428bca;
+  }
+
+  .markdown ul {
+    list-style: disc;
+    margin-left: 40px;
+  }
+
+  .markdown li {
+    font-size: 20px;
+  }
+</style>
+
+<Layout title="Changelog | David Arroyo">
+  {
+    html && (
+      <div
+        class="markdown max-w-[840px] w-full mx-auto px-4 lg:px-0"
+        set:html={html}
+      />
+    )
+  }
+
+  {
+    !html && (
+      <div class="flex flex-col w-full items-center gap-4">
+        <p class="text-xl text-gray-900 dark:text-gray-100 text-center">
+          This changelog is not available in this moment
+        </p>
+        <a
+          href={getRoutePath("home", Astro.locals.locale)}
+          class="hover:bg-gray-600 active:bg-gray-600 text-gray-900 font-semibold hover:text-gray-100 active:text-gray-100 py-2 px-4 border border-gray-500 hover:border-transparent active:border-transparent rounded cursor-pointer dark:text-gray-100 gap-3 disabled:cursor-default disabled:opacity-60 disabled:pointer-events-none"
+        >
+          Volver a {Astro.locals.t("common.nav.home")}
+        </a>
+      </div>
+    )
+  }
+</Layout>

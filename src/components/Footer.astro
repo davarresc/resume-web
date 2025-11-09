@@ -1,6 +1,7 @@
 ---
 import GithubIcon from "../assets/icons/github.svg";
 import LinkedIn from "../assets/icons/linkedin.svg";
+import { getRoutePath } from "../i18n/config";
 import { Config } from "../utils/config";
 ---
 
@@ -40,8 +41,10 @@ import { Config } from "../utils/config";
         {Astro.locals.t("common.position")}
       </p>
       <small>
-        {Astro.locals.t("common.version")}
-        {Config.version}
+        <a href={getRoutePath("changelog", Astro.locals.locale)}>
+          {Astro.locals.t("common.version")}
+          {Config.version}
+        </a>
       </small>
     </div>
   </aside>

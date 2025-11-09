@@ -15,7 +15,8 @@
       "home": "Inicio",
       "projects": "Proyectos",
       "resume": "Curriculum",
-      "contact": "Contacto"
+      "contact": "Contacto",
+      "changelog": "Changelog"
     },
     "languages": {
       "en": "English",
@@ -58,5 +59,9 @@
     "experience": "Experiencia",
     "education": "Educación",
     "certifications": "Certificaciones"
+  },
+  "changelog": {
+    "title": "Changelog | David Arroyo",
+    "error": "El Changelog no esta disponible en estos momentos."
   }
 }

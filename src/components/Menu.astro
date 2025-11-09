@@ -1,5 +1,5 @@
 ---
-import { ROUTES, type RouteKey } from "../constants/routes";
+import { MENU, type RouteKey } from "../constants/routes";
 import { getPathInfo, getRoutePath } from "../i18n/config";
 import LogoIcon from "../assets/icons/logo.svg";
 import { Icon } from "astro-icon/components";
@@ -12,7 +12,7 @@ const iconsMap: Record<string, string> = {
   default: "link",
 };
 type Link = { href: RouteKey; label: string; icon: string; disabled: boolean };
-const links: Link[] = Object.keys(ROUTES).map((key) => ({
+const links: Link[] = Object.keys(MENU).map((key) => ({
   href: key as RouteKey,
   label: Astro.locals.t(`common.nav.${key}`),
   icon: iconsMap[key] || iconsMap.default,
