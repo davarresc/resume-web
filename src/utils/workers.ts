@@ -1,7 +1,6 @@
 import { getPathInfo, switchLangHref } from "../i18n/config.ts";
 import { SETTINGS_ACTION_TYPES } from "../types/Settings.ts";
 import type { SharedWorkerGlobalScope } from "../types/SharedWorkerGlobalScope";
-import "../workers/shared.ts";
 import { setTheme } from "./settings.ts";
 
 /**
@@ -11,7 +10,7 @@ import { setTheme } from "./settings.ts";
  */
 export function initializeSharedWorker(): SharedWorker | null {
   const ctx = globalThis as unknown as SharedWorkerGlobalScope;
-  const url = new URL("../workers/shared.ts", import.meta.url);
+  const url = new URL("/js/workers/shared.js", import.meta.url);
 
   if (typeof ctx === "undefined" || !("SharedWorker" in ctx)) return null;
 
