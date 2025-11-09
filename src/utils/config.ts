@@ -12,4 +12,9 @@ export class Config {
     user: ENV.SMTP_USER,
     pass: ENV.SMTP_PASS,
   };
+
+  static readonly RECAPTCHA_V3 = {
+    public: ENV.RECAPTCHA_PUBLIC_SITE_KEY,
+    secret: ENV.RECAPTCHA_SECRET,
+  };
 }

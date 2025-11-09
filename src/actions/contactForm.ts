@@ -8,6 +8,7 @@ const contactSchema = z.object({
   lastName: z.string().min(2),
   email: z.string().email(),
   message: z.string(),
+  gToken: z.string(),
 });
 
 type ContactSchema = z.infer<typeof contactSchema>;
@@ -24,6 +25,12 @@ export default defineAction({
 
 // TODO Update to the resume notifiication mimcroservice when available
 const sendMail = async (input: ContactSchema) => {
+  const { success, score } = await checkRecaptcha(input.gToken);
+
+  if (!success || (score ?? 0) < 0.5) {
+    throw new Error("reCAPTCHA error");
+  }
+
   const transporter = nodemailer.createTransport({
     host: Config.SMTP.host,
     port: Config.SMTP.host,
@@ -40,4 +47,26 @@ const sendMail = async (input: ContactSchema) => {
     subject: "Resume web: Nuevo mensaje disponible",
     text: input.message,
   });
+};
+
+const checkRecaptcha = async (token: string) => {
+  const verifyRes = await fetch(
+    "https://www.google.com/recaptcha/api/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: Config.RECAPTCHA_V3.secret,
+        response: token,
+      }),
+    },
+  );
+
+  type Verify = {
+    success: boolean;
+    score?: number;
+    action?: string;
+    "error-codes"?: string[];
+  };
+  return (await verifyRes.json()) as Verify;
 };
