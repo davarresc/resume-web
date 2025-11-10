@@ -1,6 +1,5 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
-// import nodemailer from "nodemailer";
 import { Config } from "../utils/config";
 
 const contactSchema = z.object({
@@ -31,22 +30,18 @@ const sendMail = async (input: ContactSchema) => {
     throw new Error("reCAPTCHA error");
   }
 
-  // const transporter = nodemailer.createTransport({
-  //   host: Config.SMTP.host,
-  //   port: Config.SMTP.host,
-  //   secure: true,
-  //   auth: {
-  //     user: Config.SMTP.user,
-  //     pass: Config.SMTP.pass,
-  //   },
-  // });
-
-  // await transporter.sendMail({
-  //   from: `"${input.firstName} ${input.lastName}" <${input.email}>`,
-  //   to: "emaildavidprueba@gmail.com",
-  //   subject: "Resume web: Nuevo mensaje disponible",
-  //   text: input.message,
-  // });
+  await fetch("https://calm-bush-1676.arroyoescobardavid.workers.dev/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ ...input }),
+  }).then(async (res) => {
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Error de Resend: ${errorText}`);
+    }
+  });
 };
 
 const checkRecaptcha = async (token: string) => {

@@ -33,7 +33,6 @@
     "astro-icon": "^1.1.5",
     "daisyui": "^5.4.3",
     "markdown-it": "^14.1.0",
-    "nodemailer": "^7.0.10",
     "tailwindcss": "^4.1.16"
   },
   "devDependencies": {
