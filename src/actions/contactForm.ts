@@ -1,6 +1,5 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import { Config } from "../utils/config";
 
 const contactSchema = z.object({
   firstName: z.string().min(2),
@@ -15,16 +14,18 @@ type ContactSchema = z.infer<typeof contactSchema>;
 export default defineAction({
   accept: "form",
   input: contactSchema,
-  handler: async (input) => {
-    await sendMail(input);
+  handler: async (input, context) => {
+    // NOTE: It only works on cloudflare
+    const { env } = context.locals.runtime;
+    await sendMail(input, env.RECAPTCHA_SECRET);
 
     return { success: true };
   },
 });
 
 // TODO Update to the resume notifiication mimcroservice when available
-const sendMail = async (input: ContactSchema) => {
-  const { success, score } = await checkRecaptcha(input.gToken);
+const sendMail = async (input: ContactSchema, secret: string) => {
+  const { success, score } = await checkRecaptcha(input.gToken, secret);
 
   if (!success || (score ?? 0) < 0.5) {
     throw new Error("reCAPTCHA error");
@@ -44,14 +45,14 @@ const sendMail = async (input: ContactSchema) => {
   });
 };
 
-const checkRecaptcha = async (token: string) => {
+const checkRecaptcha = async (token: string, secret: string) => {
   const verifyRes = await fetch(
     "https://www.google.com/recaptcha/api/siteverify",
     {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
-        secret: Config.RECAPTCHA_V3.secret,
+        secret,
         response: token,
       }),
     },
