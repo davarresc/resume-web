@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/davarresc/resume-web/compare/v0.1.0...v0.1.1) (2025-11-10)
+
+
+### Bug Fixes
+
+* adjusted spacing for timeline entry ([f90e487](https://github.com/davarresc/resume-web/commit/f90e487addf33ae60ee4255eda5fee2e4f1c2028))
+
 ## [0.1.0](https://github.com/davarresc/resume-web/compare/v0.0.1...v0.1.0) (2025-11-10)
 
 
