@@ -14,7 +14,7 @@ export class Config {
   };
 
   static readonly RECAPTCHA_V3 = {
-    public: ENV.RECAPTCHA_PUBLIC_SITE_KEY,
+    public: ENV.PUBLIC_RECAPTCHA_SITE_KEY,
     secret: ENV.RECAPTCHA_SECRET,
   };
 }
