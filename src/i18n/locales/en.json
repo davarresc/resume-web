@@ -26,7 +26,9 @@
       "home": "Home",
       "mainNavigation": "Main navigation",
       "socialMedia": "Social media",
-      "languageSelector": "Language selector"
+      "languageSelector": "Language selector",
+      "themeSelector": "Theme selector",
+      "themes": "Themes"
     }
   },
   "home": {

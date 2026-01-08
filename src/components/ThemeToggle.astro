@@ -4,7 +4,13 @@ import { Icon } from "astro-icon/components";
 const uuid = String(Math.random());
 ---
 
-<div class="flex">
+<fieldset
+  class="flex"
+  aria-label={Astro.locals.t("common.accessibility.themeSelector")}
+>
+  <legend class="sr-only"
+    >{Astro.locals.t("common.accessibility.themes")}</legend
+  >
   <div
     class="relative z-0 flex gap-0.5 rounded-full bg-gray-950/5 p-0.75 text-gray-950 dark:bg-white/10 dark:text-white"
   >
@@ -33,7 +39,7 @@ const uuid = String(Math.random());
       <Icon name="tabler:moon" class="p-1" />
     </div>
   </div>
-</div>
+</fieldset>
 
 <script>
   import { SETTINGS_ACTION_TYPES, type Theme } from "../types/Settings";
