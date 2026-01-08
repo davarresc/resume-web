@@ -8,7 +8,10 @@ import { getRoutePath } from "../i18n/config";
 
 <div class="navbar">
   <div class="navbar-start flex gap-2">
-    <a href={getRoutePath("home", Astro.locals.locale)}>
+    <a
+      href={getRoutePath("home", Astro.locals.locale)}
+      aria-label={Astro.locals.t("common.accesibility.home")}
+    >
       <LogoIcon
         width="40px"
         height="40px"
@@ -16,7 +19,10 @@ import { getRoutePath } from "../i18n/config";
       />
     </a>
   </div>
-  <nav class="navbar-center hidden lg:flex">
+  <nav
+    class="navbar-center hidden lg:flex"
+    aria-label={Astro.locals.t("common.accesibility.mainNavigation")}
+  >
     <Menu />
   </nav>
   <div class="navbar-end">

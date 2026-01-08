@@ -28,7 +28,7 @@ const { isMobile = false } = Astro.props;
     <ul class="hidden lg:flex">
       {links.map(({ href, label, disabled }, idx) => (
         <>
-          <li>
+          <li class="after:content-['|'] after:px-2 after:text-gray-400 last:after:content-none">
             {disabled ? (
               <span class="text-base text-gray-400 relative p-2 dark:text-gray-300 dark:hover:text-white">
                 {label}
@@ -48,9 +48,6 @@ const { isMobile = false } = Astro.props;
               </a>
             )}
           </li>
-          {idx < links.length - 1 && (
-            <span class="px-1 text-black dark:text-white">|</span>
-          )}
         </>
       ))}
     </ul>

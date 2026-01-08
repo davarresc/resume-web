@@ -8,7 +8,10 @@ const pathname = Astro.url.pathname.replace(/^\/|\/$/g, "");
 const switchLang = (lang: Locale) => switchLangHref({ slug: pathname }, lang);
 ---
 
-<div class="dropdown dropdown-end">
+<nav
+  class="dropdown dropdown-end"
+  aria-label={Astro.locals.t("common.accessibility.languageSelector")}
+>
   <div tabindex="0" role="button" class="px-4 cursor-pointer">
     <Image
       src={`/flags/${Astro.locals.locale}.svg`}
@@ -21,7 +24,7 @@ const switchLang = (lang: Locale) => switchLangHref({ slug: pathname }, lang);
   <ul
     id="language-menu"
     tabindex="-1"
-    class="dropdown-content bg-gray-100 dark:bg-gray-800 rounded-box z-1 mt-3 w-52 p-1"
+    class="dropdown-content bg-base-200 dark:bg-gray-800 rounded-box z-1 mt-3 w-52 p-1 border border-base-300 dark:border-gray-700 shadow-lg"
   >
     {
       languages.map((lang) => (
@@ -29,7 +32,7 @@ const switchLang = (lang: Locale) => switchLangHref({ slug: pathname }, lang);
           <a
             href={switchLang(lang)}
             data-lang={lang}
-            class="flex gap-3 hover:bg-gray-200 p-2 dark:hover:bg-gray-700 active:bg-gray-200 p-2 dark:active:bg-gray-700 rounded-box"
+            class="flex gap-3 hover:bg-base-300 p-2 dark:hover:bg-gray-700 active:bg-base-200 p-2 dark:active:bg-gray-700 rounded-box"
           >
             <Image
               src={`/flags/${lang}.svg`}
@@ -43,7 +46,7 @@ const switchLang = (lang: Locale) => switchLangHref({ slug: pathname }, lang);
       ))
     }
   </ul>
-</div>
+</nav>
 
 <script>
   import { SETTINGS_ACTION_TYPES } from "../types/Settings";

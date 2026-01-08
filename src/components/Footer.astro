@@ -1,7 +1,6 @@
 ---
 import GithubIcon from "../assets/icons/github.svg";
 import LinkedIn from "../assets/icons/linkedin.svg";
-import { getRoutePath } from "../i18n/config";
 import { Config } from "../utils/config";
 ---
 
@@ -10,7 +9,7 @@ import { Config } from "../utils/config";
 >
   <div class="w-[90%] border-b border-gray-400"></div>
 
-  <aside class="flex flex-col gap-5">
+  <nav class="flex flex-col gap-5">
     <div class="flex gap-8">
       <a
         href={Astro.locals.t("common.socialNetworks.github")}
@@ -41,11 +40,11 @@ import { Config } from "../utils/config";
         {Astro.locals.t("common.position")}
       </p>
       <small>
-        <a href={getRoutePath("changelog", Astro.locals.locale)}>
+        <a href="/changelog">
           {Astro.locals.t("common.version")}
           {Config.version}
         </a>
       </small>
     </div>
-  </aside>
+  </nav>
 </footer>

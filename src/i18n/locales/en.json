@@ -21,11 +21,20 @@
     "languages": {
       "en": "English",
       "es": "Español"
+    },
+    "accessibility": {
+      "home": "Home",
+      "mainNavigation": "Main navigation",
+      "socialMedia": "Social media",
+      "languageSelector": "Language selector"
     }
   },
   "home": {
     "title": "David Arroyo",
-    "description": " I'm David Arroyo, a Full-stack Software Engineer with more than 10  years of experience. Expert in frontend-frameworks with Javascript/Typescript, Node.js and implementing Roku streaming apps using BrightScript."
+    "description": " I'm David Arroyo, a Full-stack Software Engineer with more than 10  years of experience. Expert in frontend-frameworks with Javascript/Typescript, Node.js and implementing Roku streaming apps using BrightScript.",
+    "accessibility": {
+      "profileImage": "Profile image of David Arroyo"
+    }
   },
   "contact": {
     "title": "Contact | David Arroyo",
