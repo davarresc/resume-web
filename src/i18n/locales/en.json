@@ -31,7 +31,7 @@
   },
   "home": {
     "title": "David Arroyo",
-    "description": " I'm David Arroyo, a Full-stack Software Engineer with more than 10  years of experience. Expert in frontend-frameworks with Javascript/Typescript, Node.js and implementing Roku streaming apps using BrightScript.",
+    "description": "<p class=\"text-lg text-gray-900 dark:text-gray-100\">With over 10 years of experience in web development, designing, building and delivering intuitive and scalable solutions for complex products and services. Strong expertise in JavaScript, TypeScript and Node.js, with hands-on experience in other programming languages such as Python, and the ability to adapt quickly to new stacks. Solid background in frontend and backend development, API design, and the implementation of clean, maintainable architectures.</p><p class=\"text-lg text-gray-900 dark:text-gray-100\">Experience in cross-functional collaboration, mentoring, code review, and team growth support. Detail-oriented engineer focused on continuous improvement, learning, and upholding high-quality engineering standards.</p>",
     "accessibility": {
       "profileImage": "Profile image of David Arroyo"
     }
