@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/davarresc/resume-web/compare/v0.1.1...v0.2.0) (2026-01-08)
+
+
+### Features
+
+* updated index description ([989909b](https://github.com/davarresc/resume-web/commit/989909b4845b77adeaf573f046fdfd643e2c8dfc))
+* updated layout colors and improved accessibility ([cfafac0](https://github.com/davarresc/resume-web/commit/cfafac0ca521240d1c439dd95a5cbc85e94c21bf))
+
 ## [0.1.1](https://github.com/davarresc/resume-web/compare/v0.1.0...v0.1.1) (2025-11-10)
 
 
