@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/davarresc/resume-web/compare/v0.2.0...v0.3.0) (2026-01-08)
+
+
+### Features
+
+* improved accessibility for contact, menu and theme toggle ([46bdb95](https://github.com/davarresc/resume-web/commit/46bdb958588ea45f817fb56ec01cc584aea2e34a))
+
 ## [0.2.0](https://github.com/davarresc/resume-web/compare/v0.1.1...v0.2.0) (2026-01-08)
 
 
