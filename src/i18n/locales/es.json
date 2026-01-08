@@ -31,7 +31,7 @@
   },
   "home": {
     "title": "David Arroyo",
-    "description": "Soy David Arroyo, ingeniero de software full-stack con más de 10 años de experiencia. Experto en frameworks frontend con Javascript/Typescript, Node.js e implementación de aplicaciones de streaming para Roku usando BrightScript.",
+    "description": "<p class=\"text-lg text-gray-900 dark:text-gray-100\">Con más de 10 años de trayectoria en desarrollo web, diseñando, construyendo y entregando soluciones intuitivas y escalables para productos y servicios complejos. Sólida experiencia en JavaScript, TypeScript y Node.js, además deotros lenguajes de programación como Python, y gran capacidad para adaptarse rápidamente a nuevos stacks tecnológicos. Amplia experiencia en desarrollo frontend y backend, diseño de APIs y en la implementación de arquitecturas limpias y mantenibles.</p><p class=\"text-lg text-gray-900 dark:text-gray-100\">Colaboración con equipos multidisciplinares, mentoring, revisiones de código y apoyo al crecimiento del equipo. Ingeniero orientado al detalle, enfocado en la mejora continua, el aprendizaje constante y el mantenimiento de altos estándares de calidad.</p>",
     "accessibility": {
       "profileImage": "Imagen de David Arroyo"
     }
