@@ -30,7 +30,7 @@ const { isMobile = false } = Astro.props;
         <>
           <li class="after:content-['|'] after:px-2 after:text-gray-400 last:after:content-none">
             {disabled ? (
-              <span class="text-base text-gray-400 relative p-2 dark:text-gray-300 dark:hover:text-white">
+              <span class="text-base text-gray-600 relative p-2 dark:text-gray-300 dark:hover:text-white cursor-not-allowed">
                 {label}
                 <small class="absolute top-[24px] inset-0 m-auto text-center">
                   ({Astro.locals.t("common.soon")})
